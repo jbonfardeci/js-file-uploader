@@ -332,11 +332,13 @@ var FileUploader = (function () {
      * If the server response sends back a base64 file, force the browser to download it in your callback function.
      * @param bas64: stringify
      * @param: fileName: string
+     * @param fileType: string (e.g. application/pdf)
      * @returns void
      */
-    FileUploader.prototype.downloadFile = function (base64, fileName) {
+    FileUploader.prototype.downloadFile = function (base64, fileName, fileType) {
+        fileType = fileType || 'application/octet-stream';
         var a = document.createElement('a');
-        a.setAttribute('href', 'data:application/pdf;base64,' + base64);
+        a.setAttribute('href', 'data:'+ fileType + ';base64,' + base64);
         a.setAttribute('download', fileName);
         document.body.appendChild(a);
         a.click();
