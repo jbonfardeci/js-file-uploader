@@ -10,19 +10,24 @@
  * Dependencies: Cafe.js (https://github.com/jbonfardeci/CafeJS) included.
  * 
  * Usage: 
- * ```
- * var up = new FileUploader({
- *       element: 'js-file-uploader' // string | element
- *       , url: 'https://mysite.com/api/some-method' // change to your site's server-side file upload handler 
- *         // defaults - you can override these
- *       , allowedExtensions: ['xlsx', 'xls', 'txt', 'rtf', 'zip', 'pdf', 'doc', 'docx', 'jpg', 'gif', 'png', 'ppt', 'tif', 'pptx', 'csv'] 
- *         // your callback function - what to do after an upload is are complete 
- *       , callback: function(response){ 
- *              // do something
- *         }
- *   });
- * ```
- * 
+    ```
+    var up = new FileUploader({
+        
+        // string | element
+        element: 'js-file-uploader' 
+        
+        // change to your site's server-side file upload handler 
+        , url: 'https://mysite.com/api/some-method' 
+        
+        // extensions allowed by default - you can override these
+        , allowedExtensions: ['xlsx', 'xls', 'txt', 'rtf', 'zip', 'pdf', 'doc', 'docx', 'jpg', 'gif', 'png', 'ppt', 'tif', 'pptx', 'csv'] 
+            
+        // your callback function - what to do after an upload is complete 
+        , callback: function(response){ 
+            // do something
+        }
+    });
+    ```
  * License: MIT
  */
 var FileUploader = (function () {
