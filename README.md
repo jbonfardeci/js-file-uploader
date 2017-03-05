@@ -23,4 +23,18 @@ var up = new FileUploader({
 });
 ```
 
+After instantiation, do you need to change the URL or querystring parameters before/after a file upload?
+Change: 
+```
+up.config.url = 'https://mysite.com/api/some-method?id=42'
+```
+
+Need to add your own custom AJAX file upload function?
+Change:
+```
+FileUploader.prototype.uploadFileAsync = function myCustomFn(fileName, base64File) {
+  // your custom code
+};
+```
+
 License: MIT
