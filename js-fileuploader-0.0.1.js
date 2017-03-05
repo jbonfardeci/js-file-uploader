@@ -183,13 +183,13 @@ var FileUploader = (function () {
             }
         });
 
-        self.cafe = new Cafe(asyncFns);
-        self.cafe.next(true);
+        self.cafe = new Cafe(asyncFns); // use CAFE to execute each subsequent file upload only after the previous one has completed. 
+        self.cafe.start(true); // start the file uploads
     };
 
     /**
      * Read a file asynchronously.
-     * @param self: FileUploader
+     * @param file: File
      * @param fileName: string
      * @returns void
      */
