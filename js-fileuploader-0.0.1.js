@@ -43,14 +43,14 @@ var FileUploader = (function () {
             url: undefined,
             callback: undefined,
             allowedExtensions: ['xlsx', 'xls', 'txt', 'rtf', 'zip', 'pdf', 'doc', 'docx', 'jpg', 'gif', 'png', 'ppt', 'tif', 'pptx', 'csv'],
-            template: this.template
+            template: this.template,
+            testMode: false
         };
 
         for (var p in args) {
             this.config[p] = args[p];
         }
 
-        this.progress = 0;
         var container = typeof(this.config.element) == 'string' ? document.getElementById(this.config.element) : element;
         if (!container) {
             throw 'The file upload target element is undefined.';
@@ -219,6 +219,18 @@ var FileUploader = (function () {
             base64: base64File
         };
 
+        if(this.config.testMode){
+            setTimeout(function(){
+                if (self.config.callback) {
+                    self.config.callback({success: true});
+                }
+
+                // show file upload completed status
+                self.observables[fileName].innerHTML = fileName + ' &ndash; uploaded.';
+            }, 2000);
+            return;
+        }
+
         // send file via AJAX
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open('POST', self.config.url);
@@ -291,7 +303,7 @@ var FileUploader = (function () {
     };
 
     /**
-     * Reusable event handler to call event.reventDefault or event.stopPropagation. 
+     * Reusable event handler to call event.preventDefault or event.stopPropagation. 
      * @param e: Event
      * @returns void 
      */
@@ -304,9 +316,11 @@ var FileUploader = (function () {
         }
     };
 
-     /**
-     * Clean 
-     */
+    /**
+    * Clean file name.
+    * @param file: File
+    * @returns string
+    */
     FileUploader.prototype.cleanFileName = function (file) {
         return file.name.replace(/[^a-zA-Z0-9_\-\.]/g, '');
     };

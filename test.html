@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JS File Uploader Test</title>
+
+  </head>
+  <body>
+      <div id="js-file-uploader"></div>
+      <script src="js-fileuploader-0.0.1.js"></script>
+      <script>
+          (function(){
+              var up = new FileUploader({
+    
+                // string | element
+                element: 'js-file-uploader' 
+                
+                // change to your site's server-side file upload handler 
+                , url: 'https://mysite.com/api/some-method' 
+                
+                // extensions allowed by default - you can override these
+                , allowedExtensions: ['xlsx', 'xls', 'txt', 'rtf', 'zip', 'pdf', 'doc', 'docx', 'jpg', 'gif', 'png', 'ppt', 'tif', 'pptx', 'csv'] 
+                    
+                // your callback function - what to do after an upload is complete 
+                , callback: function(response){ 
+                    // do something
+                }
+
+                , testMode: true
+            });
+          })();
+      </script>
+  </body>
+</html>
